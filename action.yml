@@ -48,7 +48,7 @@ inputs:
     required: false
   expire:
     description: ''
-    default: '86400'
+    default: '6048000'
     required: false
 outputs:
   result:
