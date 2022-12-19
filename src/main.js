@@ -57,7 +57,7 @@ const s3 = new aws.S3({signatureVersion: 'v4'});
 async function run(input) {
 
   const expire = parseInt(input.expire);
-  if (!expire | expire < 0 | 7048000 < expire) {
+  if (!expire | expire < 0 | 6048000 < expire) {
     throw new Error('"expire" input should be a number between 0 and 6048000.');
   }
 
