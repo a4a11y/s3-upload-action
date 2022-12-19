@@ -110,7 +110,7 @@ async function run(input) {
 
   let fileUrl;
   if (input.outputFileUrl == 'true' || input.outputQrUrl == 'true') {
-    if (input.public == 'true') {
+    if (input.public == 'true' || expire>604800) {
       fileUrl = `https://${input.awsBucket}.s3-${input.awsRegion}.amazonaws.com/${fileKey}`;
     } else {
       params = {
