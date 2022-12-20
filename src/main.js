@@ -52,7 +52,7 @@ aws.config.update({
   region: input.awsRegion,
 });
 
-const s3 = new aws.S3({signatureVersion: 'v4'});
+const s3 = new aws.S3({ signatureVersion: 'v4' });
 
 async function run(input) {
 
@@ -113,12 +113,14 @@ async function run(input) {
     if (input.public == 'true') {
       fileUrl = `https://${input.awsBucket}.s3-${input.awsRegion}.amazonaws.com/${fileKey}`;
     } else {
-      params = {
-        Bucket: input.awsBucket,
-        Key: fileKey,
-        Expires: expire,
-      };
-      fileUrl = await s3.getSignedUrlPromise('getObject', params);
+      fileUrl = `https://${input.awsBucket}.s3-${input.awsRegion}.amazonaws.com/${fileKey}`;
+
+      // params = {
+      //   Bucket: input.awsBucket,
+      //   Key: fileKey,
+      //   Expires: expire,
+      // };
+      // fileUrl = await s3.getSignedUrlPromise('getObject', params);
     }
     if (input.outputFileUrl == 'true') {
       core.setOutput('file-url', fileUrl);
@@ -168,7 +170,7 @@ run(input)
 function getRandomStr(length) {
   const c = 'abcdefghijklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789';
   let r = '';
-  for(let i = 0; i < length; i++) {
+  for (let i = 0; i < length; i++) {
     r += c[Math.floor(Math.random() * c.length)];
   }
   return r;
