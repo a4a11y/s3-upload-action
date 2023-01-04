@@ -122,6 +122,7 @@ async function run(input) {
       // };
       // fileUrl = await s3.getSignedUrlPromise('getObject', params);
     }
+    fileUrl = fileUrl.replace("+", "%2b")
     if (input.outputFileUrl == 'true') {
       core.setOutput('file-url', fileUrl);
     }
